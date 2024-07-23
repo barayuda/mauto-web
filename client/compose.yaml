@@ -1,0 +1,13 @@
+services:
+  client:
+    build: .
+    command: npm start
+    develop:
+      watch:
+        - action: sync
+          path: ./client
+          target: /mauto-web/client
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json

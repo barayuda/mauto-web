@@ -70,11 +70,11 @@ const Reset: React.FC<ResetProps> = ({}) => {
             <div className="h-screen">
             <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">M-Auto Web</p>
                     {ApiResponse.success ? <p className="p-4 m-10 mx-auto font-bold text-center border text-md text-success rounded-xl border-success">{ApiResponse.message}</p> : (ApiResponse.message ? <p className="p-4 m-10 mx-auto font-bold text-center border rounded-xl border-error text-md text-error">{ApiResponse.message}</p> : null)}
                     {ApiResponse.password ? <p className="p-4 m-10 mx-auto font-bold text-center border text-md text-error rounded-xl border-error">Invalid password</p> : null}
                         <Formik
-                            initialValues={passwordValues} 
+                            initialValues={passwordValues}
                             onSubmit={submitChangeForm}
                             validationSchema={passwordSchema}
                         >
@@ -91,7 +91,7 @@ const Reset: React.FC<ResetProps> = ({}) => {
                                                     }
                                                 </div>
                                             </label>
-                                            <Field placeholder="Enter old password" type={(open === false)? 'password' :'text'} name="oldPassword" className={`w-full p-3 transition duration-200 rounded input`}/>                                            
+                                            <Field placeholder="Enter old password" type={(open === false)? 'password' :'text'} name="oldPassword" className={`w-full p-3 transition duration-200 rounded input`}/>
                                             <label className="label">
                                                 {errors.oldPassword ? <ErrorField error={errors.oldPassword}/> : null}
                                             </label>
@@ -106,7 +106,7 @@ const Reset: React.FC<ResetProps> = ({}) => {
                                                     }
                                                 </div>
                                             </label>
-                                            <Field placeholder="Enter new password" type={(open === false)? 'password' :'text'} name="newPassword" className={`w-full p-3 transition duration-200 rounded input`}/>                                           
+                                            <Field placeholder="Enter new password" type={(open === false)? 'password' :'text'} name="newPassword" className={`w-full p-3 transition duration-200 rounded input`}/>
                                             <label className="label">
                                                 {errors.newPassword ? <ErrorField error={errors.newPassword}/> : null}
                                             </label>

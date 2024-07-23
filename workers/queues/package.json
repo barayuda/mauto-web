@@ -1,8 +1,8 @@
 {
   "name": "queues",
   "version": "1.0.0",
-  "description": "Queues backend part for nest-next-boilerplate app",
-  "author": "PoProstuWitold",
+  "description": "Queues backend part for mauto-web-boilerplate app",
+  "author": "mauto",
   "private": true,
   "license": "MIT",
   "scripts": {

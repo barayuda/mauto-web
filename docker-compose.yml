@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-  client: 
+  client:
     container_name: client
     build:
       dockerfile: Dockerfile
       context: ./client
     volumes:
-      - ./client:/poprostuwitold/client
-      - /poprostuwitold/client/node_modules/
-    depends_on: 
+      - ./client:/mauto-web/client
+      - /mauto-web/client/node_modules/
+    depends_on:
       - server
     ports:
-      - 3000:3000
+      - 3001:3001
     links:
       - server
     networks:
@@ -26,10 +26,10 @@ services:
       target: development
     env_file: ./server/.env
     volumes:
-      - ./server:/poprostuwitold/server
-      - /poprostuwitold/server/node_modules/
+      - ./server:/mauto-web/server
+      - /mauto-web/server/node_modules/
     command: pnpm run start:debug
-    depends_on: 
+    depends_on:
       - postgres-main
       - redis-main
     ports:
@@ -45,10 +45,10 @@ services:
       target: development
     env_file: ./workers/queues/.env
     volumes:
-      - ./workers/queues:/poprostuwitold/workers/queues
-      - /poprostuwitold/workers/queues/node_modules/
+      - ./workers/queues:/mauto-web/workers/queues
+      - /mauto-web/workers/queues/node_modules/
     command: pnpm run start:debug
-    depends_on: 
+    depends_on:
       - server
     networks:
       - main-network
@@ -69,7 +69,7 @@ services:
       - postgres-network
       - main-network
     restart: unless-stopped
-  
+
   pgadmin-main:
     container_name: pgadmin-nest
     image: dpage/pgadmin4:latest

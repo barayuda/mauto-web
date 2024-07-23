@@ -19,7 +19,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
     const router = useRouter()
     const dispatch = useDispatch<Dispatch>()
     const { user, authenticated } = useSelector((state: RootState) => state.user)
-    
+
     const thisRoute = authRoutes.includes(router.pathname)
 
     const logout = async () => {
@@ -30,7 +30,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
             dispatch.user.logoutAsync()
         } catch (err) {
             console.log(err)
-        }     
+        }
     }
     return (
         <>
@@ -76,7 +76,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
                     </div>
                     <div className="flex-none px-2 mx-2">
                         <Link className="text-lg font-bold" href="/">
-                            PoProstuWitold
+                            M-Auto
                         </Link>
                     </div>
                     <div className="hidden lg:flex-none lg:flex">

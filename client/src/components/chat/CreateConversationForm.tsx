@@ -20,7 +20,7 @@ interface CreateConversationFormProps {
 
 export const CreateConversationForm: React.FC<CreateConversationFormProps> = ({}) => {
     const { socket } = useAuthenticatedSocket('ws://localhost:4000/chat')
-    
+
     let userState = useSelector((state: RootState) => state.user)
     const { user, authenticated } = userState
 
@@ -38,13 +38,13 @@ export const CreateConversationForm: React.FC<CreateConversationFormProps> = ({}
     const createConversationSchema = Yup.object().shape({
         participant: Yup.string()
     })
-    
+
     useEffect(() => {
         if(socket) {
             socket.on('connect', () => {
                 console.log('Socket connected')
             })
-          
+
             socket.on('disconnect', () => {
                 console.log('Socket disconnected')
             })
@@ -78,11 +78,11 @@ export const CreateConversationForm: React.FC<CreateConversationFormProps> = ({}
         <>
             <div>
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">M-Auto Web</p>
                     {wsError ? <p className="p-4 m-10 mx-auto font-bold text-center border rounded-xl border-error text-md text-error">{wsError.name}</p> : null}
-                    {authenticated && user !== null ? 
+                    {authenticated && user !== null ?
                     <Formik
-                        initialValues={createConversationValues} 
+                        initialValues={createConversationValues}
                         onSubmit={submitConversation}
                         validationSchema={createConversationSchema}
                     >
@@ -93,7 +93,7 @@ export const CreateConversationForm: React.FC<CreateConversationFormProps> = ({}
                                         <label className="label">
                                             <span className="font-semibold label-text">Creator</span>
                                         </label>
-                                        <span className="font-semibold label-text">{user.displayName}</span>    
+                                        <span className="font-semibold label-text">{user.displayName}</span>
                                     </div>
                                 </div>
                                 <div>
@@ -106,16 +106,16 @@ export const CreateConversationForm: React.FC<CreateConversationFormProps> = ({}
                                             {errors.participant && touched.participant ? <ErrorField error={errors.participant}/> : null}
                                             {wsError && wsError.response && wsError.response.errors && wsError.response.errors.participant ? <ErrorField error={wsError.response.errors.participant}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
-                                
+
                                 <button type="submit" disabled={isSubmitting} className={`w-full btn font-semibold ${isSubmitting ? 'btn loading' : ''}`}>
                                     <AiTwotoneEdit/> <p className="ml-2">Create chatroom</p>
                                 </button>
                             </Form>
                         )}
-                    </Formik> : null    
+                    </Formik> : null
                     }
                     </div>
             </div>

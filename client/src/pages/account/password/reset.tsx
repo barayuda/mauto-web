@@ -49,17 +49,17 @@ const Reset: React.FC<ResetProps> = ({}) => {
             </Head>
             <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">M-Auto Web</p>
                         {ApiResponse
-                        ? 
+                        ?
                         <>
                             <p className="m-10 mx-auto text-center text-md">Password reset</p>
                             <p className="m-10 mx-auto text-center text-md">{ApiResponse.message}</p>
                             <p className="m-10 mx-auto font-bold text-center text-md">{ApiResponse.email}</p>
-                        </> 
+                        </>
                         :
                         <Formik
-                            initialValues={emailValue} 
+                            initialValues={emailValue}
                             onSubmit={submitResetForm}
                             validationSchema={emailSchema}
                         >
@@ -84,7 +84,7 @@ const Reset: React.FC<ResetProps> = ({}) => {
                         </Formik>
                         }
                     </div>
-            </div>    
+            </div>
             <div className="flex w-full m-auto mt-8 lg:w-4/12 md:w-10/12">
                 {ApiResponse ?
                     <Link href="/" className="m-auto mb-10 text-xl shadow-xl btn btn-ghost btn-sm rounded-btn lg:m-0 btn-primary btn-outline">

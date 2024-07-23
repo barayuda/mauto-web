@@ -21,7 +21,7 @@ interface CreateChatFormProps {
 
 export const CreateChatForm: React.FC<CreateChatFormProps> = ({}) => {
     const { socket } = useAuthenticatedSocket('ws://localhost:4000/chat')
-    
+
     let userState = useSelector((state: RootState) => state.user)
     const { user, authenticated } = userState
     const createChatRoomValues: ChatRoomValues = {
@@ -37,13 +37,13 @@ export const CreateChatForm: React.FC<CreateChatFormProps> = ({}) => {
         description: Yup.string(),
         isPublic: Yup.boolean()
     })
-    
+
     useEffect(() => {
         if(socket) {
             socket.on('connect', () => {
                 console.log('Socket connected')
             })
-          
+
             socket.on('disconnect', () => {
                 console.log('Socket disconnected')
             })
@@ -77,11 +77,11 @@ export const CreateChatForm: React.FC<CreateChatFormProps> = ({}) => {
         <>
             <div>
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">M-Auto Web</p>
                     {wsError ? <p className="p-4 m-10 mx-auto font-bold text-center border rounded-xl border-error text-md text-error">{wsError.name}</p> : null}
-                    {authenticated && user !== null ? 
+                    {authenticated && user !== null ?
                     <Formik
-                        initialValues={createChatRoomValues} 
+                        initialValues={createChatRoomValues}
                         onSubmit={submitChatRoom}
                         validationSchema={createChatRoomSchema}
                     >
@@ -97,7 +97,7 @@ export const CreateChatForm: React.FC<CreateChatFormProps> = ({}) => {
                                             {errors.name && touched.name ? <ErrorField error={errors.name}/> : null}
                                             {wsError && wsError.response.errors.name ? <ErrorField error={wsError.response.errors.name}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
                                 <div>
@@ -110,29 +110,29 @@ export const CreateChatForm: React.FC<CreateChatFormProps> = ({}) => {
                                             {errors.description && touched.description ? <ErrorField error={errors.description}/> : null}
                                             {wsError && wsError.response.errors.description ? <ErrorField error={wsError.response.errors.description}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
                                 <div>
                                     <div className="form-control">
                                         <label className="cursor-pointer label">
-                                            <span className="font-semibold label-text">Public</span> 
+                                            <span className="font-semibold label-text">Public</span>
                                             <Field placeholder="Enter your chat access" type="checkbox" name="isPublic" className={`checkbox`}/>
                                         </label>
                                         <label className="label">
                                             {errors.isPublic && touched.isPublic ? <ErrorField error={errors.isPublic}/> : null}
                                             {wsError && wsError.response.errors.isPublic ? <ErrorField error={wsError.response.errors.isPublic}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
-                                
+
                                 <button type="submit" disabled={isSubmitting} className={`w-full btn font-semibold ${isSubmitting ? 'btn loading' : ''}`}>
                                     <AiTwotoneEdit/> <p className="ml-2">Create chatroom</p>
                                 </button>
                             </Form>
                         )}
-                    </Formik> : null    
+                    </Formik> : null
                     }
                     </div>
             </div>

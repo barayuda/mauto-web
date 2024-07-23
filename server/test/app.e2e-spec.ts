@@ -62,6 +62,6 @@ describe('AppController (e2e)', () => {
         return request(app.getHttpServer())
         .get('/')
         .expect(200)
-        .expect('NestJS NextJS Boilerplate by PoProstuWitold v1')
+        .expect('M-Auto Boilerplate by Barayuda v1')
     })
 })

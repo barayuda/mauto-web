@@ -99,11 +99,11 @@ export class AuthService {
 
         const jwtid = nanoid()
 
-        const accessToken = await this.jwtService.signAsync({ 
+        const accessToken = await this.jwtService.signAsync({
             displayName: user.displayName,
             id: user.id
         }, {
-            issuer: 'PoProstuWitold',
+            issuer: 'mauto-web',
             secret: this.configService.get('JWT_ACCESS_SECRET_KEY'),
             expiresIn: this.configService.get('JWT_ACCESS_EXPIRATION_TIME')
         })
@@ -113,7 +113,7 @@ export class AuthService {
             id: user.id
         }, {
             jwtid,
-            issuer: 'PoProstuWitold',
+            issuer: 'mauto-web',
             secret: this.configService.get('JWT_REFRESH_SECRET_KEY'),
             expiresIn: this.configService.get('JWT_REFRESH_EXPIRATION_TIME'),
         })
@@ -126,15 +126,15 @@ export class AuthService {
     }
 
     private async setTokens(req: Request, { accessToken, refreshToken }: { accessToken: string, refreshToken?: string}) {
-        req.res.cookie('access_token', 
+        req.res.cookie('access_token',
             accessToken, {
-            maxAge: 1000 * 60 * 60 * 1, 
-            httpOnly: true, 
+            maxAge: 1000 * 60 * 60 * 1,
+            httpOnly: true,
             sameSite: 'lax'
         })
 
         if(refreshToken) {
-            req.res.cookie('refresh_token', 
+            req.res.cookie('refresh_token',
                 refreshToken, {
                 maxAge: 1000 * 60 * 60 * 24 * 30,
                 httpOnly: true,
@@ -181,10 +181,10 @@ export class AuthService {
             const user = await this.userService.continueWithProvider(req)
             const [accessToken, refreshToken] = await this.generateTokens(user)
             await this.setTokens(req, { accessToken, refreshToken })
-    
+
             // req.res.redirect('/api/v1/auth/me')
             req.res.redirect(`${process.env.ORIGIN}/me`)
-    
+
             return {
                 user,
                 accessToken
@@ -220,7 +220,7 @@ export class AuthService {
                     message: "Account already verified"
                 }
             }
-            
+
             return {
                 success: false,
                 message: "Confirmation token expired"
@@ -327,11 +327,11 @@ export class AuthService {
             throw new UnauthorizedException('Refresh token not found')
         }
 
-        const accessToken = await this.jwtService.signAsync({ 
+        const accessToken = await this.jwtService.signAsync({
             displayName: verifiedJWt.displayName,
             id: verifiedJWt.id
         }, {
-            issuer: 'PoProstuWitold',
+            issuer: 'mauto-web',
             secret: this.configService.get('JWT_ACCESS_SECRET_KEY'),
             expiresIn: this.configService.get('JWT_ACCESS_EXPIRATION_TIME')
         })

@@ -122,14 +122,14 @@ const Login: React.FC<LoginProps> = ({}) => {
             </Head>
             <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">M-Auto Web</p>
                     <div className="box-border flex flex-wrap">
                         <button onClick={() => changeForm('login')} className={`flex-1 w-64 p-4 mr-4 text-center rounded-lg uppercase font-bold ${FormType === 'login' ? 'bg-primary' : ''}`}>Sign in</button>
                         <button onClick={() => changeForm('register')} className={`flex-1 w-64 p-4 text-center rounded-lg uppercase font-bold ${FormType === 'register' ? 'bg-primary' : ''}`}>Sign up</button>
                     </div>
                     {FormType && FormType === 'login' ?
                         <Formik
-                            initialValues={loginValues} 
+                            initialValues={loginValues}
                             onSubmit={submitLoginForm}
                             validationSchema={loginSchema}
                         >
@@ -145,7 +145,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <label className="label">
                                                 {errors.email && touched.email ? <ErrorField error={errors.email}/>  : null}
                                                 {ApiErrors.email && touched.email ? <ErrorField error={ApiErrors.email}/>: null}
-                                            </label>    
+                                            </label>
                                         </div>
                                     </div>
                                     <div>
@@ -161,7 +161,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                                 </div>
                                             </label>
                                             <Field placeholder="Enter your password" type={(open === false)? 'password' :'text'} name="password" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            
+
                                             <label className="label">
                                                 {errors.password ? <ErrorField error={errors.password}/> : null}
                                                 {ApiErrors.password ? <ErrorField error={ApiErrors.password}/> : null}
@@ -186,7 +186,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                         }
                         {FormType && FormType === 'register' ?
                         <Formik
-                            initialValues={registerValues} 
+                            initialValues={registerValues}
                             onSubmit={submitRegisterForm}
                             validationSchema={registerSchema}
                         >
@@ -202,7 +202,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <label className="label">
                                                 {errors.email && touched.email ? <ErrorField error={errors.email}/> : null}
                                                 {ApiErrors.email && touched.email ? <ErrorField error={ApiErrors.email}/> : null}
-                                            </label>                                           
+                                            </label>
                                         </div>
                                     </div>
                                     <div>
@@ -217,7 +217,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                                     }
                                                 </div>
                                             </label>
-                                            <Field placeholder="Enter your password" type={(open === false)? 'password' :'text'} name="password" className={`w-full p-3 transition duration-200 rounded input`}/>                                           
+                                            <Field placeholder="Enter your password" type={(open === false)? 'password' :'text'} name="password" className={`w-full p-3 transition duration-200 rounded input`}/>
                                             <label className="label">
                                                 {errors.password ? <ErrorField error={errors.password}/> : null}
                                                 {ApiErrors.password ? <ErrorField error={ApiErrors.password}/> : null}
@@ -234,7 +234,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <label className="label">
                                                 {errors.firstName && touched.firstName ? <ErrorField error={errors.firstName}/> : null}
                                                 {ApiErrors.firstName && touched.firstName ? <ErrorField error={ApiErrors.firstName}/> : null}
-                                            </label>                                            
+                                            </label>
                                         </div>
                                     </div>
                                     <div>
@@ -247,7 +247,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <label className="label">
                                                 {errors.lastName && touched.lastName ? <ErrorField error={errors.lastName}/> : null}
                                                 {ApiErrors.lastName && touched.lastName ? <ErrorField error={ApiErrors.lastName}/> : null}
-                                            </label>                                            
+                                            </label>
                                         </div>
                                     </div>
                                     <div>
@@ -260,9 +260,9 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <label className="label">
                                                 {errors.displayName && touched.displayName ? <ErrorField error={errors.displayName}/> : null}
                                                 {ApiErrors.nickName && touched.displayName ? <ErrorField error={ApiErrors.nickName}/> : null}
-                                            </label>                                            
+                                            </label>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                     <button type="submit" disabled={isSubmitting} className={`w-full btn ${isSubmitting ? 'btn loading' : ''}`}>
                                         Submit
                                     </button>
@@ -276,7 +276,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                             <SocialLogin className="w-64" provider="Facebook" url={`${SERVER_URL}/auth/facebook`}/>
                         </section>
                     </div>
-            </div>    
+            </div>
             <div className="flex w-full m-auto mt-8 lg:w-4/12 md:w-10/12">
                 <Link href="/" className="m-auto mb-10 text-xl shadow-xl btn btn-ghost btn-sm rounded-btn lg:m-0 btn-primary btn-outline">
                     <>

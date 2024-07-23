@@ -27,11 +27,11 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
     const [ApiErrors, setAPIErrors] = useState<any>({})
     const [ApiResponse, setAPIResponse] = useState<any>('')
     const dispatch = useDispatch<Dispatch>()
-    
+
     let userState = useSelector((state: RootState) => state.user)
     const { user, authenticated } = userState
     let updateValues: UpdateValues
-    
+
     updateValues = {
         firstName: '',
         lastName: '',
@@ -51,7 +51,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
         lastName: Yup.string().required('Last name cannot be empty or whitespace').min(3, 'Last name must be between 3 and 50 characters long').max(50, 'Last name must be between 3 and 50 characters long'),
         displayName: Yup.string().required('Display name cannot be empty or whitespace').min(3, 'Display name must be between 3 and 30 characters long').max(50, 'Display name must be between 3 and 30 characters long')
     })
-    
+
     const submitUpdateForm = async (values: UpdateValues, helpers: FormikHelpers<UpdateValues>) => {
         try {
             const res = await axios.patch('/user/update', values)
@@ -59,7 +59,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
             dispatch.user.getUserProfileAsync()
             let userState = useSelector((state: RootState) => state.user)
             const { user } = userState
-            
+
             if(user) {
                 setAPIResponse('')
                 setAPIErrors({})
@@ -69,7 +69,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
                     lastName: user.lastName
                 })
             }
-            
+
         } catch (err) {
             if(err instanceof AxiosError) {
                 setAPIResponse(err!.response!.data)
@@ -96,11 +96,11 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
         <>
             <div>
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">M-Auto Web</p>
                     {ApiResponse.success ? <p className="p-4 m-10 mx-auto font-bold text-center border text-md text-success rounded-xl border-success">{ApiResponse.message}</p> : (ApiResponse.message ? <p className="p-4 m-10 mx-auto font-bold text-center border rounded-xl border-error text-md text-error">{ApiResponse.message}</p> : null)}
-                    {authenticated && user !== null ? 
+                    {authenticated && user !== null ?
                     <Formik
-                        initialValues={updateValues} 
+                        initialValues={updateValues}
                         onSubmit={submitUpdateForm}
                         validationSchema={updateSchema}
                     >
@@ -116,7 +116,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
                                             {errors.firstName && touched.firstName ? <ErrorField error={errors.firstName}/> : null}
                                             {ApiErrors && ApiErrors.firstName && touched.firstName ? <ErrorField error={ApiErrors.firstName}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
                                 <div>
@@ -129,7 +129,7 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
                                             {errors.lastName && touched.lastName ? <ErrorField error={errors.lastName}/> : null}
                                             {ApiErrors && ApiErrors.lastName && touched.lastName ? <ErrorField error={ApiErrors.lastName}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
                                 <div>
@@ -142,14 +142,14 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
                                             {errors.displayName && touched.displayName ? <ErrorField error={errors.displayName}/> : null}
                                             {ApiErrors && ApiErrors.displayName && touched.displayName ? <ErrorField error={ApiErrors.displayName}/> : null}
                                         </label>
-                                        
+
                                     </div>
                                 </div>
                                 {user.provider === 'local' ?
                                 <div>
                                     <div className="flex flex-row items-stretch">
-                                        <Link 
-                                            className="mb-6 font-semibold btn-ghost btn-sm rounded-btn btn btn-outline label-text" 
+                                        <Link
+                                            className="mb-6 font-semibold btn-ghost btn-sm rounded-btn btn btn-outline label-text"
                                             href="/account/password/change"
                                         >
                                             Change password
@@ -167,13 +167,13 @@ const EditProfileForm: React.FC<EditProfileProps> = ({}) => {
                                         </div>
                                     </div> : null
                                 }
-                                
+
                                 <button type="submit" disabled={isSubmitting} className={`w-full btn font-semibold ${isSubmitting ? 'btn loading' : ''}`}>
                                     <AiTwotoneEdit/> <p className="ml-2">Edit</p>
                                 </button>
                             </Form>
                         )}
-                    </Formik> : null    
+                    </Formik> : null
                     }
                     </div>
             </div>

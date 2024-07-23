@@ -1,8 +1,8 @@
 {
 	"name": "server",
 	"version": "1.0.0",
-	"description": "Main backend part for nest-next-boilerplate app",
-	"author": "PoProstuWitold",
+	"description": "Main backend part for mauto-web-boilerplate app",
+	"author": "mauto",
 	"private": true,
 	"license": "MIT",
 	"scripts": {
